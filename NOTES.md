@@ -1,7 +1,7 @@
 # Translation Notes
 
-**Student:** [Your name]
-**Course:** [Inglés I / Inglés II]
+**Student:** Pedro Alejandro Bayona
+**Course:** Inglés I / Inglés II
 **Date:** [dd/mm/yyyy]
 
 ---
