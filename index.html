@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-        content="Pedro Bayona's student portfolio: skills, education, web projects and technical English glossary.">
+  <meta name="description" id="page-description"
+        content="Pedro Bayona's portfolio: education, skills and web projects.">
   <title>Pagina Pedro Bayona</title>
 
   <style>
@@ -21,7 +21,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 95px;
+      scroll-padding-top: 110px;
     }
 
     body {
@@ -36,7 +36,7 @@
 
     a:focus-visible, button:focus-visible {
       outline: 3px solid var(--accent);
-      outline-offset: 5px;
+      outline-offset: 4px;
     }
 
     .skip-link {
@@ -66,7 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
@@ -87,19 +87,50 @@
       color: var(--text);
       text-decoration: none;
       font-size: 14px;
+      padding: 6px 0;
     }
 
     nav a:hover { color: var(--accent); }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 4px;
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .language-button, .menu-button {
+      font: inherit;
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 7px 10px;
+    }
+
+    .language-button {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .language-button[aria-pressed="true"] {
+      background: var(--accent);
+      color: var(--background);
+    }
 
     .menu-button {
       display: none;
       background: transparent;
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font: inherit;
     }
 
     main, .footer-inner {
@@ -175,6 +206,7 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 24px;
+      min-width: 0;
     }
 
     .tags {
@@ -188,72 +220,53 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 6px 12px;
-      color: var(--text);
       font-size: 14px;
     }
 
     ul { padding-left: 22px; }
-
     li { margin: 8px 0; }
 
-    .table-container {
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 12px;
+    .project-image {
+      margin: 0 0 24px;
     }
 
-    table {
+    .project-image svg {
       width: 100%;
-      border-collapse: collapse;
-      background: var(--surface);
-    }
-
-    caption {
-      text-align: left;
-      padding: 16px;
-      color: var(--muted);
-    }
-
-    th, td {
-      padding: 14px;
-      text-align: left;
-      vertical-align: top;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      color: var(--accent);
-      background: var(--background);
-    }
-
-    td { color: var(--muted); }
-
-    td:first-child {
-      color: var(--text);
-      font-weight: bold;
-    }
-
-    .grammar {
+      height: auto;
       display: block;
-      font-size: 12px;
-      color: var(--accent);
-      margin-top: 5px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    figcaption {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
     }
 
     footer { padding: 30px 0; }
-
     footer p { margin: 8px 0; }
 
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
+      nav {
+        order: 3;
+        width: 100%;
+      }
+
+      nav[hidden] { display: none; }
+      .menu-button:not([hidden]) { display: block; }
+    }
+
+    @media (max-width: 650px) {
       .grid { grid-template-columns: 1fr; }
       section { padding: 44px 0; }
-      .hero { padding: 60px 0; }
-      .header-inner { gap: 12px; }
-      .menu-button:not([hidden]) { display: block; }
-      nav { width: 100%; }
-      nav[hidden] { display: none; }
-      nav a { padding: 8px 0; }
-      th, td { padding: 10px; font-size: 14px; }
+      .hero { padding: 55px 0; }
+      .header-inner { padding: 12px 16px; }
+      main, .footer-inner { padding: 0 18px; }
+      .card { padding: 20px; }
+      nav { gap: 16px; }
+      .hero p { font-size: 17px; }
+      .brand { font-size: 18px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -263,74 +276,102 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-text="skip">
+    Skip to content
+  </a>
 
   <header>
     <div class="header-inner">
       <a class="brand" href="#home">Pedro Bayona</a>
 
-      <button class="menu-button" id="menu-button"
-              type="button" aria-controls="navigation"
-              aria-expanded="true" hidden>
-        Menu
-      </button>
-
       <nav id="navigation" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#resume">Resume</a>
-        <a href="#projects">Projects</a>
-        <a href="#glossary">Glossary</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-text="navAbout">About</a>
+        <a href="#skills" data-text="navSkills">Skills</a>
+        <a href="#resume" data-text="navResume">Resume</a>
+        <a href="#projects" data-text="navProjects">Projects</a>
+        <a href="#contact" data-text="navContact">Contact</a>
       </nav>
+
+      <div class="header-actions">
+        <div class="language-switcher" id="language-switcher"
+             role="group" aria-label="Choose language">
+          <button class="language-button" id="language-es"
+                  type="button" aria-pressed="false"
+                  aria-label="Español" lang="es">
+            ES
+          </button>
+          <button class="language-button" id="language-en"
+                  type="button" aria-pressed="true"
+                  aria-label="English" lang="en">
+            EN
+          </button>
+        </div>
+
+        <button class="menu-button" id="menu-button"
+                type="button" aria-controls="navigation"
+                aria-expanded="true" data-text="menu" hidden>
+          Menu
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" id="home" aria-labelledby="home-title">
-      <span class="eyebrow">Student portfolio · English II</span>
-      <h1 id="home-title">Hi, I'm Pedro Bayona.</h1>
-      <p>
+      <span class="eyebrow" data-text="heroLabel">
+        Student portfolio · English II
+      </span>
+
+      <h1 id="home-title" data-text="heroTitle">
+        Hi, I'm Pedro Bayona.
+      </h1>
+
+      <p data-text="heroText">
         I am a web programming student interested in creating websites
         and learning new technologies. This portfolio presents my
         education, skills and academic work in English.
       </p>
+
       <div class="actions">
-        <a class="button primary" href="#projects">Explore my project</a>
+        <a class="button primary" href="#projects" data-text="explore">
+          Explore my project
+        </a>
         <a class="button"
            href="https://github.com/pedro23712"
-           target="_blank" rel="noopener noreferrer">
+           target="_blank" rel="noopener noreferrer"
+           data-text="visitGithub">
           Visit my GitHub
         </a>
       </div>
     </section>
 
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
+      <h2 id="about-title" data-text="navAbout">About</h2>
+
       <div class="grid">
         <article class="card">
-          <h3>Who I am</h3>
-          <p>
+          <h3 data-text="whoTitle">Who I am</h3>
+          <p data-text="aboutText">
             My name is Pedro Bayona. I am studying web programming at
             UniEspinal in Colombia. I am interested in software development
             and in learning how websites are built.
           </p>
-          <p>
+          <p data-text="aboutGoal">
             My goal is to improve my programming skills and communicate
             my ideas clearly in English.
           </p>
         </article>
 
         <article class="card">
-          <h3>My learning interests</h3>
+          <h3 data-text="interestsTitle">My learning interests</h3>
           <ul>
-            <li>Web development</li>
-            <li>Responsive design</li>
-            <li>Version control</li>
-            <li>Technical English</li>
+            <li data-text="interestWeb">Web development</li>
+            <li data-text="interestDesign">Responsive design</li>
+            <li data-text="interestGit">Version control</li>
+            <li data-text="interestEnglish">Technical English</li>
           </ul>
-          <p>
-             I want to develop useful projects and continue learning
+          <p data-text="interestsText">
+            I want to develop useful projects and continue learning
             through academic practice.
           </p>
         </article>
@@ -338,51 +379,70 @@
     </section>
 
     <section id="skills" aria-labelledby="skills-title">
-      <h2 id="skills-title">Skills</h2>
-      <p>
+      <h2 id="skills-title" data-text="navSkills">Skills</h2>
+      <p data-text="skillsIntro">
         These are the technical and professional skills I am developing
         during my studies.
       </p>
 
       <div class="grid">
         <article class="card">
-          <h3>Technical skills</h3>
+          <h3 data-text="technicalTitle">Technical skills</h3>
           <div class="tags">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
             <span class="tag">GitHub</span>
-            <span class="tag">Responsive design</span>
+            <span class="tag" data-text="interestDesign">
+              Responsive design
+            </span>
           </div>
           <ul>
-            <li>Organizing web content with HTML.</li>
-            <li>Styling pages with CSS.</li>
-            <li>Adding basic interaction with JavaScript.</li>
-            <li>Publishing a portfolio using GitHub Pages.</li>
+            <li data-text="skillHtml">Organizing web content with HTML.</li>
+            <li data-text="skillCss">Styling pages with CSS.</li>
+            <li data-text="skillJs">Adding basic interaction with JavaScript.</li>
+            <li data-text="skillGithub">Publishing a portfolio using GitHub Pages.</li>
           </ul>
         </article>
 
         <article class="card">
-          <h3>Professional skills</h3>
+          <h3 data-text="professionalTitle">Professional skills</h3>
           <ul>
-            <li>Teamwork: sharing ideas and listening to others.</li>
-            <li>Problem-solving: identifying issues and finding solutions.</li>
-            <li>Communication: explaining project ideas clearly.</li>
-            <li>Continuous learning: practicing and improving my work.</li>
-            <li>Technical English: learning vocabulary used in programming.</li>
+            <li data-text="teamwork">
+              Teamwork: sharing ideas and listening to others.
+            </li>
+            <li data-text="problem">
+              Problem-solving: identifying issues and finding solutions.
+            </li>
+            <li data-text="communication">
+              Communication: explaining project ideas clearly.
+            </li>
+            <li data-text="learning">
+              Continuous learning: practicing and improving my work.
+            </li>
+            <li data-text="english">
+              Technical English: learning vocabulary used in programming.
+            </li>
           </ul>
         </article>
       </div>
     </section>
 
     <section id="resume" aria-labelledby="resume-title">
-      <h2 id="resume-title">Resume</h2>
+      <h2 id="resume-title" data-text="navResume">Resume</h2>
+
       <div class="grid">
         <article class="card">
-          <h3>Education</h3>
-          <p><strong>Professional Technical Program in Web Programming</strong></p>
-          <p>UniEspinal · Colombia · Currently studying</p>
+          <h3 data-text="educationTitle">Education</h3>
           <p>
+            <strong data-text="educationProgram">
+              Professional Technical Program in Web Programming
+            </strong>
+          </p>
+          <p data-text="educationStatus">
+            UniEspinal · Colombia · Currently studying
+          </p>
+          <p data-text="educationText">
             My studies focus on web programming and software development.
             I practice organizing content, creating interfaces and
             presenting academic projects.
@@ -390,14 +450,18 @@
         </article>
 
         <article class="card">
-          <h3>Academic experience</h3>
-          <p><strong>Student portfolio project</strong></p>
+          <h3 data-text="experienceTitle">Academic experience</h3>
           <p>
-            I am adapting a web profile template to present my information
-            in English. The project includes sections about my education,
-            skills and work, together with a technical glossary.
+            <strong data-text="experienceProject">
+              Student portfolio project
+            </strong>
           </p>
-          <p>
+          <p data-text="experienceText">
+            I am adapting a web profile template to present my information
+            in English and Spanish. The project includes sections about
+            my education, skills and academic work.
+          </p>
+          <p data-text="experienceGoal">
             This project helps me practice web development and technical
             communication.
           </p>
@@ -406,267 +470,143 @@
     </section>
 
     <section id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title">Projects</h2>
+      <h2 id="projects-title" data-text="navProjects">Projects</h2>
 
       <article class="card">
-        <span class="eyebrow">Academic project</span>
-        <h3>Pedro Bayona — Personal Web Portfolio</h3>
-        <p>
+        <figure class="project-image">
+          <svg viewBox="0 0 960 500"
+               xmlns="http://www.w3.org/2000/svg"
+               role="img"
+               aria-labelledby="project-image-title project-image-description">
+            <title id="project-image-title" data-text="imageTitle">
+              Personal portfolio illustration
+            </title>
+            <desc id="project-image-description" data-text="imageDescription">
+              An illustration of Pedro Bayona's portfolio with a heading,
+              navigation and information cards.
+            </desc>
+
+            <rect width="960" height="500" fill="#0b1219"/>
+            <rect x="40" y="30" width="880" height="440"
+                  rx="16" fill="#101820" stroke="#354753" stroke-width="2"/>
+            <path d="M40 90H920" stroke="#354753" stroke-width="2"/>
+            <circle cx="65" cy="60" r="6" fill="#f87171"/>
+            <circle cx="87" cy="60" r="6" fill="#fbbf24"/>
+            <circle cx="109" cy="60" r="6" fill="#67e8c4"/>
+
+            <g font-family="Arial, Helvetica, sans-serif">
+              <text x="145" y="66" fill="#c2ced8" font-size="16">
+                Pedro Bayona
+              </text>
+
+              <text x="85" y="140" fill="#67e8c4" font-size="16"
+                    data-text="imageLabel">
+                PERSONAL WEB PORTFOLIO
+              </text>
+              <text x="85" y="198" fill="#f2f6fa" font-size="40"
+                    font-weight="bold">
+                Pedro Bayona
+              </text>
+              <text x="85" y="235" fill="#c2ced8" font-size="20"
+                    data-text="imageRole">
+                Web Programming Student
+              </text>
+
+              <rect x="85" y="265" width="190" height="44"
+                    rx="8" fill="#67e8c4"/>
+              <text x="106" y="293" fill="#101820" font-size="16"
+                    font-weight="bold" data-text="imageButton">
+                Explore my project
+              </text>
+
+              <rect x="85" y="345" width="240" height="85"
+                    rx="10" fill="#192630" stroke="#354753"/>
+              <rect x="360" y="345" width="240" height="85"
+                    rx="10" fill="#192630" stroke="#354753"/>
+              <rect x="635" y="345" width="240" height="85"
+                    rx="10" fill="#192630" stroke="#354753"/>
+
+              <text x="110" y="380" fill="#f2f6fa" font-size="20"
+                    data-text="navAbout">About</text>
+              <text x="385" y="380" fill="#f2f6fa" font-size="20"
+                    data-text="navSkills">Skills</text>
+              <text x="660" y="380" fill="#f2f6fa" font-size="20"
+                    data-text="navProjects">Projects</text>
+
+              <path d="M110 402H290M385 402H565M660 402H840"
+                    stroke="#354753" stroke-width="6"
+                    stroke-linecap="round"/>
+              <circle cx="785" cy="207" r="70"
+                      fill="#192630" stroke="#67e8c4" stroke-width="3"/>
+              <text x="785" y="220" text-anchor="middle"
+                    fill="#67e8c4" font-size="38" font-weight="bold">
+                PB
+              </text>
+            </g>
+          </svg>
+
+          <figcaption data-text="imageCaption">
+            Illustration of the personal portfolio project.
+          </figcaption>
+        </figure>
+
+        <span class="eyebrow" data-text="projectLabel">
+          Academic project
+        </span>
+
+        <h3 data-text="projectTitle">
+          Pedro Bayona — Personal Web Portfolio
+        </h3>
+
+        <p data-text="projectDescription">
           A personal portfolio adapted from a classroom web profile
           template. Its purpose is to present my education, developing
-          skills and academic work in English.
+          skills and academic work in English and Spanish.
         </p>
-        <p>
-          The website includes navigation links, a mobile menu and a
-          technical English glossary. CSS media queries adapt the layout
+
+        <p data-text="projectFeatures">
+          The website includes navigation links, a mobile menu and
+          a language selector. CSS media queries adapt the layout
           to different screen sizes.
         </p>
-        <p><strong>My role:</strong> Student adapting and personalizing the portfolio.</p>
-        <p><strong>Technologies:</strong> HTML, CSS and JavaScript.</p>
-        <p><strong>Publishing platform:</strong> GitHub Pages.</p>
+
+        <p>
+          <strong data-text="roleLabel">My role:</strong>
+          <span data-text="projectRole">
+            Student adapting and personalizing the portfolio.
+          </span>
+        </p>
+
+        <p>
+          <strong data-text="technologiesLabel">Technologies used:</strong>
+          HTML, CSS, JavaScript.
+        </p>
+
+        <p>
+          <strong data-text="platformLabel">Publishing platform:</strong>
+          GitHub Pages.
+        </p>
 
         <div class="actions">
           <a class="button primary"
              href="https://pedro23712.github.io/-Bayona-Perfil-web/"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-text="liveWebsite">
             Open live website
           </a>
           <a class="button"
              href="https://github.com/pedro23712/-Bayona-Perfil-web"
-             target="_blank" rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer"
+             data-text="repository">
             View repository
           </a>
         </div>
       </article>
     </section>
 
-    <section id="glossary" aria-labelledby="glossary-title">
-      <h2 id="glossary-title">Technical English Glossary</h2>
-      <p>
-        40 terms with their meanings and example sentences.
-        Entries 1–10 use the passive voice. Entries 11–20 use the
-        present perfect. Examples illustrate grammar and vocabulary.
-      </p>
-
-      <div class="table-container">
-        <table>
-          <caption>Term — Meaning — Example sentence</caption>
-          <thead>
-            <tr>
-              <th scope="col">Term</th>
-              <th scope="col">Meaning</th>
-              <th scope="col">Example sentence</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1. File</td>
-              <td>A named collection of stored data.</td>
-              <td>The file is saved automatically.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>2. Website</td>
-              <td>A collection of related web pages.</td>
-              <td>The website is hosted on GitHub Pages.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>3. Database</td>
-              <td>An organized collection of data.</td>
-              <td>The database is updated every day.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>4. Password</td>
-              <td>A secret string used to verify access.</td>
-              <td>The password is checked before access is granted.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>5. Application</td>
-              <td>A program designed to perform tasks.</td>
-              <td>The application is tested before release.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>6. Source code</td>
-              <td>Instructions written in a programming language.</td>
-              <td>The source code is reviewed by the team.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>7. Bug</td>
-              <td>An error that causes unexpected behavior.</td>
-              <td>The bug was fixed yesterday.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>8. Backup</td>
-              <td>A copy of data kept for recovery.</td>
-              <td>A backup is created every week.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>9. Image</td>
-              <td>A digital picture.</td>
-              <td>The image is resized for mobile screens.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>10. Form</td>
-              <td>An interface used to collect user input.</td>
-              <td>The form is validated before submission.<span class="grammar">Passive voice</span></td>
-            </tr>
-            <tr>
-              <td>11. Package</td>
-              <td>A bundle of software files or components.</td>
-              <td>I have installed the package.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>12. Repository</td>
-              <td>A storage location for project files and history.</td>
-              <td>I have created a repository for my project.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>13. Commit</td>
-              <td>A recorded set of changes in version control.</td>
-              <td>I have added a commit to the repository.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>14. Branch</td>
-              <td>A separate line of development in a repository.</td>
-              <td>We have created a branch for the new feature.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>15. Browser</td>
-              <td>Software used to access websites.</td>
-              <td>I have opened the page in another browser.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>16. Function</td>
-              <td>A reusable block of code that performs a task.</td>
-              <td>I have written a function to open the menu.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>17. Variable</td>
-              <td>A named reference to a value in a program.</td>
-              <td>I have declared a variable for the result.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>18. Interface</td>
-              <td>The elements through which a user interacts with a system.</td>
-              <td>We have improved the user interface.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>19. Feature</td>
-              <td>A specific capability of a product.</td>
-              <td>I have added a new feature to the website.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>20. Documentation</td>
-              <td>Information explaining how software works or is used.</td>
-              <td>I have read the documentation.<span class="grammar">Present perfect</span></td>
-            </tr>
-            <tr>
-              <td>21. HTML</td>
-              <td>A markup language used to structure web content.</td>
-              <td>I use HTML to organize the page.</td>
-            </tr>
-            <tr>
-              <td>22. CSS</td>
-              <td>A style sheet language used to control presentation.</td>
-              <td>CSS controls the colors and spacing.</td>
-            </tr>
-            <tr>
-              <td>23. JavaScript</td>
-              <td>A programming language used for web interaction.</td>
-              <td>JavaScript opens and closes the mobile menu.</td>
-            </tr>
-            <tr>
-              <td>24. Responsive design</td>
-              <td>An approach that adapts layouts to different screen sizes.</td>
-              <td>Responsive design helps the page fit a phone screen.</td>
-            </tr>
-            <tr>
-              <td>25. Server</td>
-              <td>A system that provides services to other systems.</td>
-              <td>The server sends the page to the browser.</td>
-            </tr>
-            <tr>
-              <td>26. Client</td>
-              <td>A program or device that requests a service.</td>
-              <td>The client requests data from the server.</td>
-            </tr>
-            <tr>
-              <td>27. URL</td>
-              <td>An address that identifies an online resource.</td>
-              <td>This URL points to my portfolio.</td>
-            </tr>
-            <tr>
-              <td>28. Link</td>
-              <td>A reference that takes a user to another resource or location.</td>
-              <td>The link opens my GitHub profile.</td>
-            </tr>
-            <tr>
-              <td>29. Navigation</td>
-              <td>The controls used to move through a website.</td>
-              <td>The navigation helps visitors find my projects.</td>
-            </tr>
-            <tr>
-              <td>30. Deployment</td>
-              <td>The process of making software available in an environment.</td>
-              <td>Deployment makes the website available online.</td>
-            </tr>
-            <tr>
-              <td>31. Debugging</td>
-              <td>The process of finding and fixing software errors.</td>
-              <td>Debugging helps me understand why the menu fails.</td>
-            </tr>
-            <tr>
-              <td>32. Algorithm</td>
-              <td>A sequence of steps used to solve a problem.</td>
-              <td>The algorithm sorts the numbers.</td>
-            </tr>
-            <tr>
-              <td>33. Array</td>
-              <td>A data structure containing a sequence of elements.</td>
-              <td>The array stores several product names.</td>
-            </tr>
-            <tr>
-              <td>34. Loop</td>
-              <td>A structure that repeats instructions.</td>
-              <td>The loop processes each item.</td>
-            </tr>
-            <tr>
-              <td>35. Condition</td>
-              <td>An expression used to decide which action to perform.</td>
-              <td>The condition checks whether the menu is open.</td>
-            </tr>
-            <tr>
-              <td>36. API</td>
-              <td>A defined interface through which software components interact.</td>
-              <td>The application uses an API to request weather data.</td>
-            </tr>
-            <tr>
-              <td>37. Accessibility</td>
-              <td>The design of systems that people with different abilities can use.</td>
-              <td>Keyboard navigation improves accessibility.</td>
-            </tr>
-            <tr>
-              <td>38. Version control</td>
-              <td>A system for recording and managing changes to files.</td>
-              <td>Version control helps the team track changes.</td>
-            </tr>
-            <tr>
-              <td>39. Front end</td>
-              <td>The part of an application that users directly interact with.</td>
-              <td>The front end displays the project cards.</td>
-            </tr>
-            <tr>
-              <td>40. Back end</td>
-              <td>The server-side part of an application.</td>
-              <td>The back end processes requests from the client.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
     <section id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <p>
+      <h2 id="contact-title" data-text="navContact">Contact</h2>
+      <p data-text="contactText">
         Visit my GitHub profile to explore my public work and repositories.
       </p>
       <a class="button"
@@ -679,15 +619,180 @@
 
   <footer>
     <div class="footer-inner">
-      <p>Pedro Bayona · Web Programming Student · UniEspinal</p>
-      <a href="#home">Back to top</a>
+      <p data-text="footerText">
+        Pedro Bayona · Web Programming Student · UniEspinal
+      </p>
+      <a href="#home" data-text="backTop">Back to top</a>
     </div>
   </footer>
 
   <script>
+    const english = {
+      skip: "Skip to content",
+      navAbout: "About",
+      navSkills: "Skills",
+      navResume: "Resume",
+      navProjects: "Projects",
+      navContact: "Contact",
+      menu: "Menu",
+      heroLabel: "Student portfolio · English II",
+      heroTitle: "Hi, I'm Pedro Bayona.",
+      heroText: "I am a web programming student interested in creating websites and learning new technologies. This portfolio presents my education, skills and academic work in English.",
+      explore: "Explore my project",
+      visitGithub: "Visit my GitHub",
+      whoTitle: "Who I am",
+      aboutText: "My name is Pedro Bayona. I am studying web programming at UniEspinal in Colombia. I am interested in software development and in learning how websites are built.",
+      aboutGoal: "My goal is to improve my programming skills and communicate my ideas clearly in English.",
+      interestsTitle: "My learning interests",
+      interestWeb: "Web development",
+      interestDesign: "Responsive design",
+      interestGit: "Version control",
+      interestEnglish: "Technical English",
+      interestsText: "I want to develop useful projects and continue learning through academic practice.",
+      skillsIntro: "These are the technical and professional skills I am developing during my studies.",
+      technicalTitle: "Technical skills",
+      skillHtml: "Organizing web content with HTML.",
+      skillCss: "Styling pages with CSS.",
+      skillJs: "Adding basic interaction with JavaScript.",
+      skillGithub: "Publishing a portfolio using GitHub Pages.",
+      professionalTitle: "Professional skills",
+      teamwork: "Teamwork: sharing ideas and listening to others.",
+      problem: "Problem-solving: identifying issues and finding solutions.",
+      communication: "Communication: explaining project ideas clearly.",
+      learning: "Continuous learning: practicing and improving my work.",
+      english: "Technical English: learning vocabulary used in programming.",
+      educationTitle: "Education",
+      educationProgram: "Professional Technical Program in Web Programming",
+      educationStatus: "UniEspinal · Colombia · Currently studying",
+      educationText: "My studies focus on web programming and software development. I practice organizing content, creating interfaces and presenting academic projects.",
+      experienceTitle: "Academic experience",
+      experienceProject: "Student portfolio project",
+      experienceText: "I am adapting a web profile template to present my information in English and Spanish. The project includes sections about my education, skills and academic work.",
+      experienceGoal: "This project helps me practice web development and technical communication.",
+      imageTitle: "Personal portfolio illustration",
+      imageDescription: "An illustration of Pedro Bayona's portfolio with a heading, navigation and information cards.",
+      imageLabel: "PERSONAL WEB PORTFOLIO",
+      imageRole: "Web Programming Student",
+      imageButton: "Explore my project",
+      imageCaption: "Illustration of the personal portfolio project.",
+      projectLabel: "Academic project",
+      projectTitle: "Pedro Bayona — Personal Web Portfolio",
+      projectDescription: "A personal portfolio adapted from a classroom web profile template. Its purpose is to present my education, developing skills and academic work in English and Spanish.",
+      projectFeatures: "The website includes navigation links, a mobile menu and a language selector. CSS media queries adapt the layout to different screen sizes.",
+      roleLabel: "My role:",
+      projectRole: "Student adapting and personalizing the portfolio.",
+      technologiesLabel: "Technologies used:",
+      platformLabel: "Publishing platform:",
+      liveWebsite: "Open live website",
+      repository: "View repository",
+      contactText: "Visit my GitHub profile to explore my public work and repositories.",
+      footerText: "Pedro Bayona · Web Programming Student · UniEspinal",
+      backTop: "Back to top"
+    };
+
+    const spanish = {
+      skip: "Saltar al contenido",
+      navAbout: "Sobre mí",
+      navSkills: "Habilidades",
+      navResume: "Formación",
+      navProjects: "Proyectos",
+      navContact: "Contacto",
+      menu: "Menú",
+      heroLabel: "Portafolio estudiantil · Inglés II",
+      heroTitle: "Hola, soy Pedro Bayona.",
+      heroText: "Soy estudiante de programación web y me interesa crear páginas y aprender nuevas tecnologías. Este portafolio presenta mi formación, habilidades y trabajo académico.",
+      explore: "Explorar mi proyecto",
+      visitGithub: "Visitar mi GitHub",
+      whoTitle: "Quién soy",
+      aboutText: "Mi nombre es Pedro Bayona. Estudio programación web en UniEspinal, Colombia. Me interesa el desarrollo de software y aprender cómo se construyen las páginas web.",
+      aboutGoal: "Mi objetivo es mejorar mis habilidades de programación y comunicar mis ideas claramente en inglés.",
+      interestsTitle: "Mis intereses de aprendizaje",
+      interestWeb: "Desarrollo web",
+      interestDesign: "Diseño adaptable",
+      interestGit: "Control de versiones",
+      interestEnglish: "Inglés técnico",
+      interestsText: "Quiero desarrollar proyectos útiles y seguir aprendiendo mediante la práctica académica.",
+      skillsIntro: "Estas son las habilidades técnicas y profesionales que estoy desarrollando durante mis estudios.",
+      technicalTitle: "Habilidades técnicas",
+      skillHtml: "Organizar contenido web con HTML.",
+      skillCss: "Dar estilo a las páginas con CSS.",
+      skillJs: "Agregar interacciones básicas con JavaScript.",
+      skillGithub: "Publicar un portafolio utilizando GitHub Pages.",
+      professionalTitle: "Habilidades profesionales",
+      teamwork: "Trabajo en equipo: compartir ideas y escuchar a los demás.",
+      problem: "Resolución de problemas: identificar dificultades y encontrar soluciones.",
+      communication: "Comunicación: explicar claramente las ideas de un proyecto.",
+      learning: "Aprendizaje continuo: practicar y mejorar mi trabajo.",
+      english: "Inglés técnico: aprender vocabulario utilizado en programación.",
+      educationTitle: "Educación",
+      educationProgram: "Técnico Profesional en Programación Web",
+      educationStatus: "UniEspinal · Colombia · En formación",
+      educationText: "Mis estudios se enfocan en programación web y desarrollo de software. Practico la organización de contenidos, la creación de interfaces y la presentación de proyectos académicos.",
+      experienceTitle: "Experiencia académica",
+      experienceProject: "Proyecto de portafolio estudiantil",
+      experienceText: "Estoy adaptando una plantilla de perfil web para presentar mi información en inglés y español. El proyecto incluye secciones sobre mi formación, habilidades y trabajo académico.",
+      experienceGoal: "Este proyecto me ayuda a practicar desarrollo web y comunicación técnica.",
+      imageTitle: "Ilustración del portafolio personal",
+      imageDescription: "Una ilustración del portafolio de Pedro Bayona con un encabezado, navegación y tarjetas informativas.",
+      imageLabel: "PORTAFOLIO WEB PERSONAL",
+      imageRole: "Estudiante de Programación Web",
+      imageButton: "Explorar proyecto",
+      imageCaption: "Ilustración del proyecto de portafolio personal.",
+      projectLabel: "Proyecto académico",
+      projectTitle: "Pedro Bayona — Portafolio Web Personal",
+      projectDescription: "Un portafolio personal adaptado de una plantilla de perfil web de clase. Su propósito es presentar mi formación, habilidades en desarrollo y trabajo académico en inglés y español.",
+      projectFeatures: "La página incluye enlaces de navegación, un menú para celular y un selector de idioma. Las consultas de medios de CSS adaptan la distribución a distintos tamaños de pantalla.",
+      roleLabel: "Mi función:",
+      projectRole: "Estudiante encargado de adaptar y personalizar el portafolio.",
+      technologiesLabel: "Tecnologías utilizadas:",
+      platformLabel: "Plataforma de publicación:",
+      liveWebsite: "Abrir página publicada",
+      repository: "Ver repositorio",
+      contactText: "Visita mi perfil de GitHub para explorar mi trabajo público y mis repositorios.",
+      footerText: "Pedro Bayona · Estudiante de Programación Web · UniEspinal",
+      backTop: "Volver al inicio"
+    };
+
     const menuButton = document.getElementById("menu-button");
     const navigation = document.getElementById("navigation");
-    const mobileScreen = window.matchMedia("(max-width: 760px)");
+    const languageEs = document.getElementById("language-es");
+    const languageEn = document.getElementById("language-en");
+    const mobileScreen = window.matchMedia("(max-width: 900px)");
+
+    function changeLanguage(language) {
+      const texts = language === "es" ? spanish : english;
+
+      document.querySelectorAll("[data-text]").forEach(function (element) {
+        const key = element.getAttribute("data-text");
+        const translation = Reflect.get(texts, key);
+
+        if (typeof translation === "string") {
+          element.textContent = translation;
+        }
+      });
+
+      document.documentElement.lang = language;
+
+      languageEs.setAttribute("aria-pressed", String(language === "es"));
+      languageEn.setAttribute("aria-pressed", String(language === "en"));
+
+      navigation.setAttribute(
+        "aria-label",
+        language === "es" ? "Navegación principal" : "Main navigation"
+      );
+
+      document.getElementById("language-switcher").setAttribute(
+        "aria-label",
+        language === "es" ? "Elegir idioma" : "Choose language"
+      );
+
+      document.getElementById("page-description").setAttribute(
+        "content",
+        language === "es"
+          ? "Portafolio de Pedro Bayona: formación, habilidades y proyectos web."
+          : "Pedro Bayona's portfolio: education, skills and web projects."
+      );
+    }
 
     function setMenu(open) {
       navigation.hidden = !open;
@@ -698,6 +803,14 @@
       menuButton.hidden = !mobileScreen.matches;
       setMenu(!mobileScreen.matches);
     }
+
+    languageEs.addEventListener("click", function () {
+      changeLanguage("es");
+    });
+
+    languageEn.addEventListener("click", function () {
+      changeLanguage("en");
+    });
 
     menuButton.addEventListener("click", function () {
       setMenu(navigation.hidden);
@@ -710,7 +823,8 @@
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && mobileScreen.matches &&
+      if (event.key === "Escape" &&
+          mobileScreen.matches &&
           !navigation.hidden) {
         setMenu(false);
         menuButton.focus();
@@ -718,7 +832,9 @@
     });
 
     mobileScreen.addEventListener("change", updateNavigation);
+
     updateNavigation();
+    changeLanguage("en");
   </script>
 </body>
 </html>
