@@ -1,82 +1,34 @@
-# Translation Notes
+# Project Notes — Draft
 
-**Student:** Pedro Alejandro Bayona
-**Course:** Inglés I / Inglés II
-**Date:** [dd/mm/yyyy]
+Author: Pedro Bayona
+Course: English II
+Project: Personal Web Portfolio
 
----
+## 1. What is the purpose of my portfolio?
 
-## Why this file exists
+The purpose of my portfolio is to present my education, skills and academic work. Visitors can read about me and explore my portfolio project in English and Spanish.
 
-Your Spanish profile and your English profile are **not** the same text in two
-languages. They are two different documents for two different readers.
+## 2. What am I learning while developing this project?
 
-Some examples of what changes:
+I am learning how HTML organizes content, how CSS controls the appearance of a website and how JavaScript adds interaction. I am also practicing technical English and learning how commits record changes in a GitHub repository.
 
-- A Colombian *hoja de vida* often includes a photo, an ID number, an address
-  and a date of birth. An English CV or profile does not. In many countries
-  this information is removed on purpose, because of anti-discrimination law.
-- Spanish professional writing often uses nouns: *"Manejo de bases de datos
-  relacionales."* English uses action verbs: *"Built and maintained relational
-  databases."*
-- Some technical words are never translated. Nobody writes *"marco de trabajo
-  JavaScript del lado del cliente"*. We write *framework*.
+## 3. What would I like to improve in my portfolio?
 
-This file is where you show that you understood those differences.
+I would like to add more academic projects and improve my programming skills. I also want to replace the project illustration with a real screenshot and check the website on different devices.
 
----
+## Tools and assistance used
 
-## Question 1 · What did you leave out?
+- GitHub: repository management and file editing.
+- GitHub Pages: website publishing.
+- HTML: page structure.
+- CSS: styling and responsive layout.
+- JavaScript: language selection and mobile navigation.
+- ChatGPT: assistance with HTML, CSS, JavaScript, English writing and these project notes.
 
-Name **one thing** that appears in your Spanish version and does **not** appear
-in your English version. Explain why you removed it.
+## Starting material
 
-> [Write 2–4 sentences in English.]
+The starting point was the classroom web profile template. ChatGPT provided revised code and suggested English and Spanish content for the personalized portfolio.
 
----
+## Pending checks
 
-## Question 2 · What did you not translate?
-
-Name **one technical term** that you kept in English in both versions.
-Explain why translating it would be a bad idea.
-
-> [Write 2–4 sentences in English.]
-
----
-
-## Question 3 · What was difficult?
-
-Name **one sentence** that was hard to write in English. Copy the Spanish
-version and your English version. Explain what you changed and why a
-word-by-word translation did not work.
-
-> Spanish: [copy your sentence here]
->
-> English: [copy your sentence here]
->
-> [Write 2–4 sentences in English explaining the change.]
-
----
-
-## Tools
-
-You may use dictionaries, translators and AI tools. But you must say so here.
-
-**Which tools did you use, and for what?**
-
-> [Write your answer in English. Be specific. For example: "I used
-> Cambridge Dictionary to check the difference between *develop* and
-> *design*." Or: "I used a translator for a first version of the About
-> section, and then I rewrote it because it sounded too formal."]
-
----
-
-## Self-check before you submit
-
-- [ ] Both dictionaries in `script.js` have the same keys.
-- [ ] No `[square brackets]` are left in the page.
-- [ ] My page has no address, no phone number and no ID number.
-- [ ] The language button works in both directions.
-- [ ] All my links open the correct page.
-- [ ] I read my English text out loud and it sounds natural to me.
-- [ ] I can explain my profile in English, without reading it.
+The published website still needs final verification in an incognito window, on a computer and on a mobile phone.
