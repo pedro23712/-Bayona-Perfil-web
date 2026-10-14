@@ -1,351 +1,724 @@
 <!DOCTYPE html>
-<!--
-  ============================================================
-  WEB PROFILE TEMPLATE  ·  Técnico Profesional en Programación Web
-  Institución Universitaria de El Espinal - UniEspinal
-  Inglés I / Inglés II
-  ============================================================
-
-  HOW TO USE THIS FILE
-  1. Replace every text inside [square brackets] with your own information.
-  2. Every visible text has a data-i18n attribute. The actual words live in
-     script.js, inside the ES and EN dictionaries. Edit them there.
-  3. Do NOT delete the data-i18n attributes. They connect this file to the
-     language switcher.
-  4. Never add your home address, your phone number or your ID number.
-     A public profile does not need them.
-  ============================================================
--->
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Pedro Bayona's student portfolio: skills, education, web projects and technical English glossary.">
+  <title>Pagina Pedro Bayona</title>
 
-  <!-- [Replace with your name] -->
-  <title>Pedro Alejandro Bayona · Web Developer</title>
-  <meta name="description" content="[I am a Software Development student with an interest in web development. I enjoy creating projects and learning new technologies]">
+  <style>
+    :root {
+      --background: #101820;
+      --surface: #192630;
+      --text: #f2f6fa;
+      --muted: #c2ced8;
+      --accent: #67e8c4;
+      --border: #354753;
+    }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="style.css">
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -100px;
+      background: var(--text);
+      color: var(--background);
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .skip-link:focus { top: 10px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .menu-button {
+      display: none;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    main, .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero { padding: 90px 0; }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.1;
+      margin: 16px 0;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 1.3;
+      margin: 0 0 24px;
+    }
+
+    h3 { margin-top: 0; }
+
+    p { color: var(--muted); }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 19px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: var(--background);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 12px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    ul { padding-left: 22px; }
+
+    li { margin: 8px 0; }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+    }
+
+    caption {
+      text-align: left;
+      padding: 16px;
+      color: var(--muted);
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--accent);
+      background: var(--background);
+    }
+
+    td { color: var(--muted); }
+
+    td:first-child {
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .grammar {
+      display: block;
+      font-size: 12px;
+      color: var(--accent);
+      margin-top: 5px;
+    }
+
+    footer { padding: 30px 0; }
+
+    footer p { margin: 8px 0; }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 44px 0; }
+      .hero { padding: 60px 0; }
+      .header-inner { gap: 12px; }
+      .menu-button:not([hidden]) { display: block; }
+      nav { width: 100%; }
+      nav[hidden] { display: none; }
+      nav a { padding: 8px 0; }
+      th, td { padding: 10px; font-size: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ========================= HEADER ========================= -->
-  <div class="contenedor-header">
-    <header>
-      <div class="logo">
-        <!-- [Replace with your name or a short nickname] -->
-        <a href="#inicio">Pedro Alejandro Bayona</a>
-      </div>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="#home">Pedro Bayona</a>
 
-      <nav id="nav">
-        <ul>
-          <li><a href="#inicio"     data-i18n="nav.home"      onclick="cerrarMenu()">INICIO</a></li>
-          <li><a href="#sobremi"    data-i18n="nav.about"     onclick="cerrarMenu()">SOBRE MÍ</a></li>
-          <li><a href="#skills"     data-i18n="nav.skills"    onclick="cerrarMenu()">SKILLS</a></li>
-          <li><a href="#curriculum" data-i18n="nav.resume"    onclick="cerrarMenu()">FORMACIÓN</a></li>
-          <li><a href="#portfolio"  data-i18n="nav.portfolio" onclick="cerrarMenu()">PROYECTOS</a></li>
-          <li><a href="#contacto"   data-i18n="nav.contact"   onclick="cerrarMenu()">CONTACTO</a></li>
-        </ul>
+      <button class="menu-button" id="menu-button"
+              type="button" aria-controls="navigation"
+              aria-expanded="true" hidden>
+        Menu
+      </button>
+
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
+        <a href="#projects">Projects</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#contact">Contact</a>
       </nav>
-
-      <div class="acciones-header">
-        <!-- LANGUAGE SWITCHER -->
-        <button id="btn-idioma"
-                class="btn-idioma"
-                type="button"
-                onclick="cambiarIdioma()"
-                aria-label="Switch to English">
-          <span class="idioma-activo">ES</span><span class="idioma-sep">/</span><span class="idioma-inactivo">EN</span>
-        </button>
-
-        <button class="nav-responsive" type="button" onclick="mostrarOcultarMenu()" aria-label="Menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </header>
-  </div>
-
-  <!-- ========================= HERO ========================= -->
-  <section id="inicio" class="inicio">
-    <div class="contenido-banner">
-      <div class="contenedor-img">
-        <!-- [Replace profile.jpg with your own photo. Square image works best.] -->
-        <img src="images/profile.jpg" alt="Profile photo" onerror="this.style.display='none'">
-      </div>
-
-      <!-- [Replace with your full name] -->
-      <h1>Pedro Alejandro Bayona</h1>
-      <h2 data-i18n="hero.role">Desarrollador Web · Soporte Técnico</h2>
-
-      <div class="redes">
-        <!-- [Replace the # with your real profile links. Delete the ones you do not use.] -->
-        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="mailto:[your.email@example.com]" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ========================= ABOUT ========================= -->
-  <section id="sobremi" class="sobremi">
-    <div class="contenido-seccion">
-      <h2 data-i18n="about.title">Sobre Mí</h2>
-
-      <p data-i18n="about.text">
-        [Escribe aquí dos o tres frases sobre ti.]
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <span class="eyebrow">Student portfolio · English II</span>
+      <h1 id="home-title">Hi, I'm Pedro Bayona.</h1>
+      <p>
+        I am a web programming student interested in creating websites
+        and learning new technologies. This portfolio presents my
+        education, skills and academic work in English.
       </p>
+      <div class="actions">
+        <a class="button primary" href="#projects">Explore my project</a>
+        <a class="button"
+           href="https://github.com/pedro23712"
+           target="_blank" rel="noopener noreferrer">
+          Visit my GitHub
+        </a>
+      </div>
+    </section>
 
-      <div class="fila">
-        <div class="col">
-          <h3 data-i18n="about.infoTitle">Información</h3>
-          <!--
-            SAFE FIELDS ONLY.
-            Do not add: home address, phone number, ID number, date of birth.
-          -->
-          <ul class="datos">
-            <li>
-              <strong data-i18n="about.labelLocation">Ubicación</strong>
-              <span data-i18n="about.valueLocation">Colombia</span>
-            </li>
-            <li>
-              <strong data-i18n="about.labelEmail">Correo</strong>
-              <span>[your.email@example.com]</span>
-            </li>
-            <li>
-              <strong data-i18n="about.labelLanguages">Idiomas</strong>
-              <span data-i18n="about.valueLanguages">Español (nativo) · Inglés ([nivel])</span>
-            </li>
-            <li>
-              <strong data-i18n="about.labelStatus">Disponibilidad</strong>
-              <span class="destacado" data-i18n="about.valueStatus">Abierto a prácticas</span>
-            </li>
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Who I am</h3>
+          <p>
+            My name is Pedro Bayona. I am studying web programming at
+            UniEspinal in Colombia. I am interested in software development
+            and in learning how websites are built.
+          </p>
+          <p>
+            My goal is to improve my programming skills and communicate
+            my ideas clearly in English.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>My learning interests</h3>
+          <ul>
+            <li>Web development</li>
+            <li>Responsive design</li>
+            <li>Version control</li>
+            <li>Technical English</li>
           </ul>
-        </div>
-
-        <div class="col">
-          <h3 data-i18n="about.interestsTitle">Intereses</h3>
-          <div class="contenedor-intereses">
-            <!-- [Change icons and labels. Keep between 4 and 6.] -->
-            <div class="interes">
-              <i class="fa-solid fa-code"></i>
-              <span data-i18n="interest.1">CÓDIGO</span>
-            </div>
-            <div class="interes">
-              <i class="fa-solid fa-headset"></i>
-              <span data-i18n="interest.2">SOPORTE</span>
-            </div>
-            <div class="interes">
-              <i class="fa-solid fa-book-open"></i>
-              <span data-i18n="interest.3">LECTURA</span>
-            </div>
-            <div class="interes">
-              <i class="fa-solid fa-gamepad"></i>
-              <span data-i18n="interest.4">JUEGOS</span>
-            </div>
-          </div>
-        </div>
+          <p>
+            I want to develop useful projects and continue learning
+            through academic practice.
+          </p>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========================= SKILLS ========================= -->
-  <!--
-    To change a skill: edit the label, and edit data-percent.
-    The bar width and the number are both taken from data-percent,
-    so you only change it in ONE place.
-  -->
-  <section id="skills" class="skills">
-    <div class="contenido-seccion">
-      <h2 data-i18n="skills.title">Habilidades</h2>
-
-      <div class="fila">
-        <div class="col">
-          <h3 data-i18n="skills.technical">Habilidades técnicas</h3>
-
-          <div class="skill">
-            <span class="skill-nombre">HTML &amp; CSS</span>
-            <div class="barra-skill"><div class="progreso" data-percent="70"><span>70%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre">JavaScript</span>
-            <div class="barra-skill"><div class="progreso" data-percent="55"><span>55%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre">MySQL</span>
-            <div class="barra-skill"><div class="progreso" data-percent="45"><span>45%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre">Git &amp; GitHub</span>
-            <div class="barra-skill"><div class="progreso" data-percent="60"><span>60%</span></div></div>
-          </div>
-        </div>
-
-        <div class="col">
-          <h3 data-i18n="skills.professional">Habilidades profesionales</h3>
-
-          <div class="skill">
-            <span class="skill-nombre" data-i18n="skill.support">Soporte al usuario</span>
-            <div class="barra-skill"><div class="progreso" data-percent="80"><span>80%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre" data-i18n="skill.teamwork">Trabajo en equipo</span>
-            <div class="barra-skill"><div class="progreso" data-percent="85"><span>85%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre" data-i18n="skill.problem">Resolución de problemas</span>
-            <div class="barra-skill"><div class="progreso" data-percent="75"><span>75%</span></div></div>
-          </div>
-          <div class="skill">
-            <span class="skill-nombre" data-i18n="skill.english">Inglés técnico</span>
-            <div class="barra-skill"><div class="progreso" data-percent="65"><span>65%</span></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= RESUME ========================= -->
-  <section id="curriculum" class="curriculum">
-    <div class="contenido-seccion">
-      <h2 data-i18n="resume.title">Formación y experiencia</h2>
-
-      <div class="fila">
-        <!-- EDUCATION -->
-        <div class="col izquierda">
-          <h3 data-i18n="resume.education">Formación</h3>
-
-          <div class="item izq">
-            <h4 data-i18n="edu.1.title">Técnico Profesional en Programación Web</h4>
-            <span class="casa">UniEspinal</span>
-            <span class="fecha">[2025 - 2027]</span>
-            <p data-i18n="edu.1.text">[Una o dos frases sobre lo que aprendes aquí.]</p>
-            <div class="conectori"><div class="circuloi"></div></div>
-          </div>
-
-          <div class="item izq">
-            <h4 data-i18n="edu.2.title">[Curso o certificación]</h4>
-            <span class="casa">[Institución]</span>
-            <span class="fecha">[Año]</span>
-            <p data-i18n="edu.2.text">[Qué aprendiste y para qué te sirve.]</p>
-            <div class="conectori"><div class="circuloi"></div></div>
-          </div>
-        </div>
-
-        <!-- EXPERIENCE -->
-        <div class="col derecha">
-          <h3 data-i18n="resume.experience">Experiencia</h3>
-
-          <!--
-            No work experience yet? That is normal.
-            Use academic projects, volunteer work or freelance jobs.
-            Describe what you DID, using action verbs: built, configured, fixed, tested.
-          -->
-          <div class="item der">
-            <h4 data-i18n="exp.1.title">[Rol o tipo de proyecto]</h4>
-            <span class="casa">[Empresa, institución o proyecto propio]</span>
-            <span class="fecha">[Año]</span>
-            <p data-i18n="exp.1.text">[Qué hiciste, con qué herramientas y qué resultado tuvo.]</p>
-            <div class="conectord"><div class="circulod"></div></div>
-          </div>
-
-          <div class="item der">
-            <h4 data-i18n="exp.2.title">[Rol o tipo de proyecto]</h4>
-            <span class="casa">[Empresa, institución o proyecto propio]</span>
-            <span class="fecha">[Año]</span>
-            <p data-i18n="exp.2.text">[Qué hiciste, con qué herramientas y qué resultado tuvo.]</p>
-            <div class="conectord"><div class="circulod"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= PORTFOLIO ========================= -->
-  <!--
-    This is the most important section for a junior developer.
-    Three finished small projects are better than ten unfinished ones.
-    Every card should link to the live project or to its repository.
-  -->
-  <section id="portfolio" class="portfolio">
-    <div class="contenido-seccion">
-      <h2 data-i18n="portfolio.title">Proyectos</h2>
-
-      <div class="galeria">
-        <a class="proyecto" href="#" target="_blank" rel="noopener">
-          <img src="images/project-1.png" alt="Project 1" onerror="this.style.opacity=0">
-          <div class="overlay">
-            <h3 data-i18n="project.1.title">[Nombre del proyecto]</h3>
-            <p data-i18n="project.1.text">[Tecnologías usadas]</p>
-          </div>
-        </a>
-
-        <a class="proyecto" href="#" target="_blank" rel="noopener">
-          <img src="images/project-2.png" alt="Project 2" onerror="this.style.opacity=0">
-          <div class="overlay">
-            <h3 data-i18n="project.2.title">[Nombre del proyecto]</h3>
-            <p data-i18n="project.2.text">[Tecnologías usadas]</p>
-          </div>
-        </a>
-
-        <a class="proyecto" href="#" target="_blank" rel="noopener">
-          <img src="images/project-3.png" alt="Project 3" onerror="this.style.opacity=0">
-          <div class="overlay">
-            <h3 data-i18n="project.3.title">[Nombre del proyecto]</h3>
-            <p data-i18n="project.3.text">[Tecnologías usadas]</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= CONTACT ========================= -->
-  <!--
-    A contact form needs a server to work. This template uses direct links
-    instead, so nothing here is decorative: every button really does something.
-  -->
-  <section id="contacto" class="contacto">
-    <div class="contenido-seccion">
-      <h2 data-i18n="contact.title">Contacto</h2>
-      <p class="contacto-intro" data-i18n="contact.intro">
-        [Una frase invitando a escribirte.]
+    <section id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <p>
+        These are the technical and professional skills I am developing
+        during my studies.
       </p>
 
-      <div class="tarjetas-contacto">
-        <a class="tarjeta" href="mailto:[your.email@example.com]">
-          <i class="fa-solid fa-envelope"></i>
-          <strong data-i18n="contact.emailLabel">Correo</strong>
-          <span>[your.email@example.com]</span>
-        </a>
+      <div class="grid">
+        <article class="card">
+          <h3>Technical skills</h3>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Responsive design</span>
+          </div>
+          <ul>
+            <li>Organizing web content with HTML.</li>
+            <li>Styling pages with CSS.</li>
+            <li>Adding basic interaction with JavaScript.</li>
+            <li>Publishing a portfolio using GitHub Pages.</li>
+          </ul>
+        </article>
 
-        <a class="tarjeta" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-github"></i>
-          <strong>GitHub</strong>
-          <span>[github.com/tu-usuario]</span>
-        </a>
-
-        <a class="tarjeta" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin-in"></i>
-          <strong>LinkedIn</strong>
-          <span data-i18n="contact.linkedinValue">[Tu perfil profesional]</span>
-        </a>
+        <article class="card">
+          <h3>Professional skills</h3>
+          <ul>
+            <li>Teamwork: sharing ideas and listening to others.</li>
+            <li>Problem-solving: identifying issues and finding solutions.</li>
+            <li>Communication: explaining project ideas clearly.</li>
+            <li>Continuous learning: practicing and improving my work.</li>
+            <li>Technical English: learning vocabulary used in programming.</li>
+          </ul>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========================= FOOTER ========================= -->
+    <section id="resume" aria-labelledby="resume-title">
+      <h2 id="resume-title">Resume</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Education</h3>
+          <p><strong>Professional Technical Program in Web Programming</strong></p>
+          <p>UniEspinal · Colombia · Currently studying</p>
+          <p>
+            My studies focus on web programming and software development.
+            I practice organizing content, creating interfaces and
+            presenting academic projects.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Academic experience</h3>
+          <p><strong>Student portfolio project</strong></p>
+          <p>
+            I am adapting a web profile template to present my information
+            in English. The project includes sections about my education,
+            skills and work, together with a technical glossary.
+          </p>
+          <p>
+            This project helps me practice web development and technical
+            communication.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+
+      <article class="card">
+        <span class="eyebrow">Academic project</span>
+        <h3>Pedro Bayona — Personal Web Portfolio</h3>
+        <p>
+          A personal portfolio adapted from a classroom web profile
+          template. Its purpose is to present my education, developing
+          skills and academic work in English.
+        </p>
+        <p>
+          The website includes navigation links, a mobile menu and a
+          technical English glossary. CSS media queries adapt the layout
+          to different screen sizes.
+        </p>
+        <p><strong>My role:</strong> Student adapting and personalizing the portfolio.</p>
+        <p><strong>Technologies:</strong> HTML, CSS and JavaScript.</p>
+        <p><strong>Publishing platform:</strong> GitHub Pages.</p>
+
+        <div class="actions">
+          <a class="button primary"
+             href="https://pedro23712.github.io/-Bayona-Perfil-web/"
+             target="_blank" rel="noopener noreferrer">
+            Open live website
+          </a>
+          <a class="button"
+             href="https://github.com/pedro23712/-Bayona-Perfil-web"
+             target="_blank" rel="noopener noreferrer">
+            View repository
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <section id="glossary" aria-labelledby="glossary-title">
+      <h2 id="glossary-title">Technical English Glossary</h2>
+      <p>
+        40 terms with their meanings and example sentences.
+        Entries 1–10 use the passive voice. Entries 11–20 use the
+        present perfect. Examples illustrate grammar and vocabulary.
+      </p>
+
+      <div class="table-container">
+        <table>
+          <caption>Term — Meaning — Example sentence</caption>
+          <thead>
+            <tr>
+              <th scope="col">Term</th>
+              <th scope="col">Meaning</th>
+              <th scope="col">Example sentence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. File</td>
+              <td>A named collection of stored data.</td>
+              <td>The file is saved automatically.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>2. Website</td>
+              <td>A collection of related web pages.</td>
+              <td>The website is hosted on GitHub Pages.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>3. Database</td>
+              <td>An organized collection of data.</td>
+              <td>The database is updated every day.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>4. Password</td>
+              <td>A secret string used to verify access.</td>
+              <td>The password is checked before access is granted.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>5. Application</td>
+              <td>A program designed to perform tasks.</td>
+              <td>The application is tested before release.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>6. Source code</td>
+              <td>Instructions written in a programming language.</td>
+              <td>The source code is reviewed by the team.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>7. Bug</td>
+              <td>An error that causes unexpected behavior.</td>
+              <td>The bug was fixed yesterday.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>8. Backup</td>
+              <td>A copy of data kept for recovery.</td>
+              <td>A backup is created every week.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>9. Image</td>
+              <td>A digital picture.</td>
+              <td>The image is resized for mobile screens.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>10. Form</td>
+              <td>An interface used to collect user input.</td>
+              <td>The form is validated before submission.<span class="grammar">Passive voice</span></td>
+            </tr>
+            <tr>
+              <td>11. Package</td>
+              <td>A bundle of software files or components.</td>
+              <td>I have installed the package.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>12. Repository</td>
+              <td>A storage location for project files and history.</td>
+              <td>I have created a repository for my project.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>13. Commit</td>
+              <td>A recorded set of changes in version control.</td>
+              <td>I have added a commit to the repository.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>14. Branch</td>
+              <td>A separate line of development in a repository.</td>
+              <td>We have created a branch for the new feature.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>15. Browser</td>
+              <td>Software used to access websites.</td>
+              <td>I have opened the page in another browser.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>16. Function</td>
+              <td>A reusable block of code that performs a task.</td>
+              <td>I have written a function to open the menu.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>17. Variable</td>
+              <td>A named reference to a value in a program.</td>
+              <td>I have declared a variable for the result.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>18. Interface</td>
+              <td>The elements through which a user interacts with a system.</td>
+              <td>We have improved the user interface.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>19. Feature</td>
+              <td>A specific capability of a product.</td>
+              <td>I have added a new feature to the website.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>20. Documentation</td>
+              <td>Information explaining how software works or is used.</td>
+              <td>I have read the documentation.<span class="grammar">Present perfect</span></td>
+            </tr>
+            <tr>
+              <td>21. HTML</td>
+              <td>A markup language used to structure web content.</td>
+              <td>I use HTML to organize the page.</td>
+            </tr>
+            <tr>
+              <td>22. CSS</td>
+              <td>A style sheet language used to control presentation.</td>
+              <td>CSS controls the colors and spacing.</td>
+            </tr>
+            <tr>
+              <td>23. JavaScript</td>
+              <td>A programming language used for web interaction.</td>
+              <td>JavaScript opens and closes the mobile menu.</td>
+            </tr>
+            <tr>
+              <td>24. Responsive design</td>
+              <td>An approach that adapts layouts to different screen sizes.</td>
+              <td>Responsive design helps the page fit a phone screen.</td>
+            </tr>
+            <tr>
+              <td>25. Server</td>
+              <td>A system that provides services to other systems.</td>
+              <td>The server sends the page to the browser.</td>
+            </tr>
+            <tr>
+              <td>26. Client</td>
+              <td>A program or device that requests a service.</td>
+              <td>The client requests data from the server.</td>
+            </tr>
+            <tr>
+              <td>27. URL</td>
+              <td>An address that identifies an online resource.</td>
+              <td>This URL points to my portfolio.</td>
+            </tr>
+            <tr>
+              <td>28. Link</td>
+              <td>A reference that takes a user to another resource or location.</td>
+              <td>The link opens my GitHub profile.</td>
+            </tr>
+            <tr>
+              <td>29. Navigation</td>
+              <td>The controls used to move through a website.</td>
+              <td>The navigation helps visitors find my projects.</td>
+            </tr>
+            <tr>
+              <td>30. Deployment</td>
+              <td>The process of making software available in an environment.</td>
+              <td>Deployment makes the website available online.</td>
+            </tr>
+            <tr>
+              <td>31. Debugging</td>
+              <td>The process of finding and fixing software errors.</td>
+              <td>Debugging helps me understand why the menu fails.</td>
+            </tr>
+            <tr>
+              <td>32. Algorithm</td>
+              <td>A sequence of steps used to solve a problem.</td>
+              <td>The algorithm sorts the numbers.</td>
+            </tr>
+            <tr>
+              <td>33. Array</td>
+              <td>A data structure containing a sequence of elements.</td>
+              <td>The array stores several product names.</td>
+            </tr>
+            <tr>
+              <td>34. Loop</td>
+              <td>A structure that repeats instructions.</td>
+              <td>The loop processes each item.</td>
+            </tr>
+            <tr>
+              <td>35. Condition</td>
+              <td>An expression used to decide which action to perform.</td>
+              <td>The condition checks whether the menu is open.</td>
+            </tr>
+            <tr>
+              <td>36. API</td>
+              <td>A defined interface through which software components interact.</td>
+              <td>The application uses an API to request weather data.</td>
+            </tr>
+            <tr>
+              <td>37. Accessibility</td>
+              <td>The design of systems that people with different abilities can use.</td>
+              <td>Keyboard navigation improves accessibility.</td>
+            </tr>
+            <tr>
+              <td>38. Version control</td>
+              <td>A system for recording and managing changes to files.</td>
+              <td>Version control helps the team track changes.</td>
+            </tr>
+            <tr>
+              <td>39. Front end</td>
+              <td>The part of an application that users directly interact with.</td>
+              <td>The front end displays the project cards.</td>
+            </tr>
+            <tr>
+              <td>40. Back end</td>
+              <td>The server-side part of an application.</td>
+              <td>The back end processes requests from the client.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p>
+        Visit my GitHub profile to explore my public work and repositories.
+      </p>
+      <a class="button"
+         href="https://github.com/pedro23712"
+         target="_blank" rel="noopener noreferrer">
+        GitHub · pedro23712
+      </a>
+    </section>
+  </main>
+
   <footer>
-    <a href="#inicio" class="arriba" aria-label="Back to top">
-      <i class="fa-solid fa-angles-up"></i>
-    </a>
-    <p class="footer-nota" data-i18n="footer.note">
-      Pedro Alejandro Bayona · Técnico Profesional en Programación Web · UniEspinal
-    </p>
+    <div class="footer-inner">
+      <p>Pedro Bayona · Web Programming Student · UniEspinal</p>
+      <a href="#home">Back to top</a>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const menuButton = document.getElementById("menu-button");
+    const navigation = document.getElementById("navigation");
+    const mobileScreen = window.matchMedia("(max-width: 760px)");
+
+    function setMenu(open) {
+      navigation.hidden = !open;
+      menuButton.setAttribute("aria-expanded", String(open));
+    }
+
+    function updateNavigation() {
+      menuButton.hidden = !mobileScreen.matches;
+      setMenu(!mobileScreen.matches);
+    }
+
+    menuButton.addEventListener("click", function () {
+      setMenu(navigation.hidden);
+    });
+
+    navigation.addEventListener("click", function (event) {
+      if (event.target.closest("a") && mobileScreen.matches) {
+        setMenu(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && mobileScreen.matches &&
+          !navigation.hidden) {
+        setMenu(false);
+        menuButton.focus();
+      }
+    });
+
+    mobileScreen.addEventListener("change", updateNavigation);
+    updateNavigation();
+  </script>
 </body>
 </html>
