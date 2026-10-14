@@ -29,6 +29,6 @@ I would like to add more academic projects and improve my programming skills. I 
 
 The starting point was the classroom web profile template. ChatGPT provided revised code and suggested English and Spanish content for the personalized portfolio.
 
-## Pending checks
+## Website checks
 
-The published website still needs final verification in an incognito window, on a computer and on a mobile phone.
+I have checked the published website in an incognito window on a computer and on a mobile phone. The navigation menu and the English and Spanish language buttons work correctly.
